@@ -2,7 +2,7 @@
 
 // ping google.com
 
-$host = 'https://www.google.com';
+$host = 'google.com';
 $port = 80;
 $waitTimeoutInSeconds = 1;
 if($fp = fsockopen($host, $port, $errCode, $errStr, $waitTimeoutInSeconds)){
