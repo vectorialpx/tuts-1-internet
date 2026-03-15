@@ -1,13 +1,29 @@
 <?php
+/**
+ * Ping a server, or google.com by default
+ * 
+ * Usage:
+ * > ping.php yahoo.com 80
+ */
 
-// ping google.com
+// ?? is a null-safe operator,
+// if $argv[1] is not set, host will become 'google.com'
+$host = $argv[1] ?? 'google.com';
 
-$host = 'google.com';
-$port = 80;
+// same for port, if $argv[2] is not set, port will be 80
+$port = $argv[2] ?? 80;
+
 $waitTimeoutInSeconds = 1;
-if($fp = fsockopen($host, $port, $errCode, $errStr, $waitTimeoutInSeconds)){
-   var_dump('Yey!');
+
+echo "\nStarting ping...";
+
+if ($fp = fsockopen($host, $port, $errCode, $errStr, $waitTimeoutInSeconds)) {
+   echo "\nPong! From {$host}, port {$port}";
 } else {
-   var_dump('Error:', $errCode, $errStr);
+   echo "\nError!";
+   var_dump('Code', $errCode, 'Details', $errStr);
 }
+
 fclose($fp);
+
+echo "\n\nEnd!\n";
